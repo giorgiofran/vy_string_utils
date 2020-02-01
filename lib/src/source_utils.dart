@@ -164,16 +164,15 @@ AnalysisResult analyzeDartSourceBasic(
               : targetEndContent(),
           targetEndPosition(token),
           level: blockLevel);
-      if (statements.isNotEmpty) {
-        while (statement.level < statements.last.level) {
-          if (statement.statements.isEmpty) {
-            statement.statements.add(statements.last);
-          } else {
-            statement.statements.insert(0, statements.last);
-          }
-          statements.removeLast();
+      while (statements.isNotEmpty && statement.level < statements.last.level) {
+        if (statement.statements.isEmpty) {
+          statement.statements.add(statements.last);
+        } else {
+          statement.statements.insert(0, statements.last);
         }
+        statements.removeLast();
       }
+
       statements.add(statement);
       statementLevels[blockLevel] =
           PositionInfo(sourceEndPosition(token), targetEndPosition(token), 0);
