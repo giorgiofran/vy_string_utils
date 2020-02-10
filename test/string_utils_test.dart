@@ -111,5 +111,93 @@ void main() {
       expect(getDartAnnotationIdentifier(source, 11), 'Annotate');
       expect(getDartAnnotationIdentifier(source, 12), '');
     });
+
+    test('SplitInLines', () {
+      String test = 'Lorem ipsum dolor sit amet, consectetur adipisci elit, '
+          'sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. '
+          'Ut enim ad minim veniam, quis nostrum exercitationem ullamco '
+          'laboriosam, nisi ut aliquid ex ea commodi consequatur. '
+          'Duis aute irure reprehenderit in voluptate velit esse cillum '
+          'dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat '
+          'non proident, sunt in culpa qui officia deserunt mollit anim '
+          'id est laborum.';
+      List<String> parts = splitInLines(test, 50);
+      expect(parts.length, 10);
+      expect(parts.first, 'Lorem ipsum dolor sit amet, consectetur adipisci ');
+      expect(parts[5], 'aute irure reprehenderit in voluptate velit esse ');
+      expect(parts.last, 'laborum.');
+      List<String> parts1 = splitInLines(test, 50, separator: ',');
+      expect(parts1.length, 11);
+      expect(parts1.first, 'Lorem ipsum dolor sit amet,');
+      expect(parts1[2], ' sed do eiusmod tempor incidunt ut labore et dolor');
+      expect(parts1[3], 'e magna aliqua. Ut enim ad minim veniam,');
+      expect(parts1.last, ' est laborum.');
+      List<String> parts2 = splitInLines(test, 50, firstLineDecrease: 12);
+      expect(parts2.length, 10);
+      expect(parts2.first, 'Lorem ipsum dolor sit amet, ');
+      expect(parts2[5], 'consequatur. Duis aute irure reprehenderit in ');
+      expect(parts2.last, 'mollit anim id est laborum.');
+      expect(test, parts.join());
+      expect(parts.join(), parts1.join());
+      expect(parts.join(), parts2.join());
+    });
+    test('SplitInLines 1', () {
+      String test1 = 'consequatur';
+      List<String> parts1 = splitInLines(test1, 10);
+      expect(parts1.length, 2);
+      expect(parts1.first, 'consequatu');
+      expect(parts1.last, 'r');
+      List<String> parts2 = splitInLines(test1, 11);
+      expect(parts2.length, 1);
+      expect(parts2.first, 'consequatur');
+      List<String> parts3 = splitInLines(test1, 12);
+      expect(parts3.length, 1);
+      expect(parts3.first, 'consequatur');
+      String test = 'Lorem amet';
+      List<String> parts = splitInLines(test, 10);
+      expect(parts.length, 1);
+      expect(parts.first, 'Lorem amet');
+    });
+
+    test('SplitInLines 2', () {
+      String test1 = 'consequatur mollit est';
+      List<String> parts1 = splitInLines(test1, 10);
+      expect(parts1.length, 3);
+      expect(parts1.first, 'consequatu');
+      expect(parts1[1], 'r mollit ');
+      expect(parts1.last, 'est');
+      List<String> parts2 = splitInLines(test1, 11);
+      expect(parts2.length, 2);
+      expect(parts2.first, 'consequatur');
+      expect(parts2.last, ' mollit est');
+      List<String> parts3 = splitInLines(test1, 12);
+      expect(parts3.length, 2);
+      expect(parts3.first, 'consequatur ');
+      expect(parts3.last, 'mollit est');
+      expect(test1, parts1.join());
+      expect(test1, parts2.join());
+      expect(test1, parts3.join());
+    });
+
+    test('SplitInLines 3', () {
+      String test1 = 'mollit est consequatur';
+      List<String> parts1 = splitInLines(test1, 10);
+      expect(parts1.length, 4);
+      expect(parts1.first, 'mollit ');
+      expect(parts1[1], 'est ');
+      expect(parts1[2], 'consequatu');
+      expect(parts1.last, 'r');
+      List<String> parts2 = splitInLines(test1, 11);
+      expect(parts2.length, 2);
+      expect(parts2.first, 'mollit est ');
+      expect(parts2.last, 'consequatur');
+      List<String> parts3 = splitInLines(test1, 12);
+      expect(parts3.length, 2);
+      expect(parts3.first, 'mollit est ');
+      expect(parts3.last, 'consequatur');
+      expect(test1, parts1.join());
+      expect(test1, parts2.join());
+      expect(test1, parts3.join());
+    });
   });
 }

@@ -33,30 +33,51 @@ String cutAndAlign(String string, int newLength,
   }
 }
 
-List<String> splitInLines(String string, int lineLength, {String separator}) {
+List<String> splitInLines(String string, int lineLength,
+    {String separator, int firstLineDecrease}) {
   separator ??= ' ';
+  firstLineDecrease ??= 0;
   final StringBuffer buffer = StringBuffer();
   final List<String> ret = <String>[];
-  final int length = lineLength - 3;
   if (String == null) {
     return ret;
   }
 
   final List<String> parts = string.split(separator);
+  int length = lineLength - firstLineDecrease;
   for (String part in parts) {
-    if (buffer.length + part.length > length - 3) {
+    if (buffer.length +
+            part.length +
+            (part == parts.last ? 0 : separator.length) >
+        length) {
       if (buffer.isNotEmpty) {
-        ret.add(cut(buffer.toString(), lineLength));
+        ret.add('$buffer');
         buffer.clear();
+        length = lineLength;
       }
     }
+
+    int idx = 0;
     if (part == parts.last) {
-      buffer.write(part);
+      for (; idx + length < part.length; idx += length) {
+        buffer.write(part.substring(idx, idx + length));
+        ret.add('$buffer');
+        buffer.clear();
+        length = lineLength;
+      }
+      buffer.write(part.substring(idx));
     } else {
-      buffer.write('$part$separator');
+      for (; idx + length < part.length + separator.length; idx += length) {
+        buffer.write(part.substring(idx, idx + length));
+        ret.add('$buffer');
+        buffer.clear();
+        length = lineLength;
+      }
+      buffer.write(part.substring(idx));
+      buffer.write(separator);
     }
   }
-  return ret..add(cut(buffer.toString(), lineLength));
+  return ret..add('$buffer');
 }
 
 @Deprecated('Use preserveOnlyChars instead (wrong name)')
