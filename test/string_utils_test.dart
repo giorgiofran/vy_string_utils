@@ -191,6 +191,11 @@ void main() {
       expect(parts2.length, 2);
       expect(parts2.first, 'mollit est ');
       expect(parts2.last, 'consequatur');
+      List<String> parts4 = splitInLines(test1, 11, firstLineDecrease: 5);
+      expect(parts4.length, 3);
+      expect(parts4.first, 'mollit');
+      expect(parts4[1], ' est ');
+      expect(parts4.last, 'consequatur');
       List<String> parts3 = splitInLines(test1, 12);
       expect(parts3.length, 2);
       expect(parts3.first, 'mollit est ');
@@ -198,6 +203,7 @@ void main() {
       expect(test1, parts1.join());
       expect(test1, parts2.join());
       expect(test1, parts3.join());
+      expect(test1, parts4.join());
     });
   });
 }

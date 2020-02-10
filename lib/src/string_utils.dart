@@ -65,7 +65,9 @@ List<String> splitInLines(String string, int lineLength,
         buffer.clear();
         length = lineLength;
       }
-      buffer.write(part.substring(idx));
+      if (idx < part.length) {
+        buffer.write(part.substring(idx));
+      }
     } else {
       for (; idx + length < part.length + separator.length; idx += length) {
         buffer.write(part.substring(idx, idx + length));
@@ -73,7 +75,9 @@ List<String> splitInLines(String string, int lineLength,
         buffer.clear();
         length = lineLength;
       }
-      buffer.write(part.substring(idx));
+      if (idx < part.length) {
+        buffer.write(part.substring(idx));
+      }
       buffer.write(separator);
     }
   }
