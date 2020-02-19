@@ -6,42 +6,44 @@ void main() {
     setUp(() {});
 
     test('Cut ok', () {
-      //expect('please cut here this string'.cut(15), 'please cut here');
+      expect('please cut here this string'.cut(15), 'please cut here');
       expect(cut('please cut here this string', 15), 'please cut here');
-      //expect('please cut'.cut(15), 'please cut');
+      expect('please cut'.cut(15), 'please cut');
       expect(cut('please cut', 15), 'please cut');
       expect(cut(null, 15), null);
+      String test;
+      expect(test?.cut(3), null);
     });
 
     test('Cut error', () {
-/*      expect(() => null.cut(15), throwsNoSuchMethodError);
-      expect(() => 'please cut'.cut(-1), throwsRangeError);*/
+      expect(() => null.cut(15), throwsNoSuchMethodError);
+      expect(() => 'please cut'.cut(-1), throwsRangeError);
     });
   });
 
   group('Cut And Align', () {
     setUp(() {});
 
-    /*   test('Cut And Align ok', () {
-      expect('please cut here this string'.cutAndAlign(15), 'please cut here');*/
-    /*     expect(
+    test('Cut And Align ok', () {
+      expect('please cut here this string'.cutAndAlign(15), 'please cut here');
+      expect(
           'please cut here this string'
               .cutAndAlign(15, leftAlign: false, paddingChar: '*'),
-          'please cut here');*/
-    /*     expect('please cut'.cutAndAlign(15), 'please cut     ');
+          'please cut here');
+      expect('please cut'.cutAndAlign(15), 'please cut     ');
       expect('please cut'.cutAndAlign(15, leftAlign: false), '     please cut');
       expect('please cut'.cutAndAlign(15, paddingChar: '*'), 'please cut*****');
       expect('please cut'.cutAndAlign(15, leftAlign: false, paddingChar: '*'),
-          '*****please cut');*/
-  });
+          '*****please cut');
+    });
 
-  test('Cut and Align error', () {
-    //expect(() => null.cutAndAlign(15), throwsNoSuchMethodError);
-    /*     expect(
+    test('Cut and Align error', () {
+      expect(() => null.cutAndAlign(15), throwsNoSuchMethodError);
+      expect(
           () =>
               'please cut'.cutAndAlign(-1, leftAlign: false, paddingChar: '*'),
           throwsRangeError);
-    });*/
+    });
   });
   group('A group of tests', () {
     setUp(() {});
@@ -86,7 +88,7 @@ void main() {
       expect(onlyContainsAlpha('en_US'), isFalse);
     });
     test('Dart Identifier', () {
-      String source = '''
+      final source = '''
       enum _LanguageType{ dart, cPlusPlus, c, java, python}
       ''';
 
@@ -99,7 +101,7 @@ void main() {
       expect(getDartIdentifier(source, 12), 'LanguageType');
     });
     test('Dart Annotation Identifier', () {
-      String source = '''
+      final source = '''
       enum @Annotate('Test note')
       ''';
 
@@ -113,7 +115,7 @@ void main() {
     });
 
     test('SplitInLines', () {
-      String test = 'Lorem ipsum dolor sit amet, consectetur adipisci elit, '
+      final test = 'Lorem ipsum dolor sit amet, consectetur adipisci elit, '
           'sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. '
           'Ut enim ad minim veniam, quis nostrum exercitationem ullamco '
           'laboriosam, nisi ut aliquid ex ea commodi consequatur. '
@@ -121,17 +123,20 @@ void main() {
           'dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat '
           'non proident, sunt in culpa qui officia deserunt mollit anim '
           'id est laborum.';
+      // ignore: omit_local_variable_types
       List<String> parts = splitInLines(test, 50);
       expect(parts.length, 10);
       expect(parts.first, 'Lorem ipsum dolor sit amet, consectetur adipisci ');
       expect(parts[5], 'aute irure reprehenderit in voluptate velit esse ');
       expect(parts.last, 'laborum.');
+      // ignore: omit_local_variable_types
       List<String> parts1 = splitInLines(test, 50, separator: ',');
       expect(parts1.length, 11);
       expect(parts1.first, 'Lorem ipsum dolor sit amet,');
       expect(parts1[2], ' sed do eiusmod tempor incidunt ut labore et dolor');
       expect(parts1[3], 'e magna aliqua. Ut enim ad minim veniam,');
       expect(parts1.last, ' est laborum.');
+      // ignore: omit_local_variable_types
       List<String> parts2 = splitInLines(test, 50, firstLineDecrease: 12);
       expect(parts2.length, 10);
       expect(parts2.first, 'Lorem ipsum dolor sit amet, ');
@@ -142,34 +147,41 @@ void main() {
       expect(parts.join(), parts2.join());
     });
     test('SplitInLines 1', () {
-      String test1 = 'consequatur';
+      const test1 = 'consequatur';
+      // ignore: omit_local_variable_types
       List<String> parts1 = splitInLines(test1, 10);
       expect(parts1.length, 2);
       expect(parts1.first, 'consequatu');
       expect(parts1.last, 'r');
+      // ignore: omit_local_variable_types
       List<String> parts2 = splitInLines(test1, 11);
       expect(parts2.length, 1);
       expect(parts2.first, 'consequatur');
+      // ignore: omit_local_variable_types
       List<String> parts3 = splitInLines(test1, 12);
       expect(parts3.length, 1);
       expect(parts3.first, 'consequatur');
-      String test = 'Lorem amet';
+      const test = 'Lorem amet';
+      // ignore: omit_local_variable_types
       List<String> parts = splitInLines(test, 10);
       expect(parts.length, 1);
       expect(parts.first, 'Lorem amet');
     });
 
     test('SplitInLines 2', () {
-      String test1 = 'consequatur mollit est';
+      const test1 = 'consequatur mollit est';
+      // ignore: omit_local_variable_types
       List<String> parts1 = splitInLines(test1, 10);
       expect(parts1.length, 3);
       expect(parts1.first, 'consequatu');
       expect(parts1[1], 'r mollit ');
       expect(parts1.last, 'est');
+      // ignore: omit_local_variable_types
       List<String> parts2 = splitInLines(test1, 11);
       expect(parts2.length, 2);
       expect(parts2.first, 'consequatur');
       expect(parts2.last, ' mollit est');
+      // ignore: omit_local_variable_types
       List<String> parts3 = splitInLines(test1, 12);
       expect(parts3.length, 2);
       expect(parts3.first, 'consequatur ');
@@ -180,22 +192,26 @@ void main() {
     });
 
     test('SplitInLines 3', () {
-      String test1 = 'mollit est consequatur';
+      const test1 = 'mollit est consequatur';
+      // ignore: omit_local_variable_types
       List<String> parts1 = splitInLines(test1, 10);
       expect(parts1.length, 4);
       expect(parts1.first, 'mollit ');
       expect(parts1[1], 'est ');
       expect(parts1[2], 'consequatu');
       expect(parts1.last, 'r');
+      // ignore: omit_local_variable_types
       List<String> parts2 = splitInLines(test1, 11);
       expect(parts2.length, 2);
       expect(parts2.first, 'mollit est ');
       expect(parts2.last, 'consequatur');
+      // ignore: omit_local_variable_types
       List<String> parts4 = splitInLines(test1, 11, firstLineDecrease: 5);
       expect(parts4.length, 3);
       expect(parts4.first, 'mollit');
       expect(parts4[1], ' est ');
       expect(parts4.last, 'consequatur');
+      // ignore: omit_local_variable_types
       List<String> parts3 = splitInLines(test1, 12);
       expect(parts3.length, 2);
       expect(parts3.first, 'mollit est ');

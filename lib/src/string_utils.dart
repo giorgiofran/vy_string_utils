@@ -14,38 +14,40 @@ String cut(String string, int length) {
   if (string == null) {
     return string;
   }
-  if (string.length <= length) {
+/*   if (string.length <= length) {
     return string;
   }
-  return string.substring(0, length);
-  //return string.cut(length);
+  return string.substring(0, length); */
+  return string.cut(length);
 }
 
 String cutAndAlign(String string, int newLength,
     {String paddingChar, bool leftAlign}) {
-  paddingChar ??= ' ';
+  return string.cutAndAlign(newLength,
+      paddingChar: paddingChar, leftAlign: leftAlign);
+  /*  paddingChar ??= ' ';
   leftAlign ??= true;
-  String ret = cut(string, newLength);
+  final ret = cut(string, newLength);
   if (leftAlign) {
     return ret.padRight(newLength, paddingChar);
   } else {
     return ret.padLeft(newLength, paddingChar);
-  }
+  } */
 }
 
 List<String> splitInLines(String string, int lineLength,
     {String separator, int firstLineDecrease}) {
   separator ??= ' ';
   firstLineDecrease ??= 0;
-  final StringBuffer buffer = StringBuffer();
-  final List<String> ret = <String>[];
+  final buffer = StringBuffer();
+  final ret = <String>[];
   if (String == null) {
     return ret;
   }
-
+  //ignore: omit_local_variable_types
   final List<String> parts = string.split(separator);
-  int length = lineLength - firstLineDecrease;
-  for (String part in parts) {
+  var length = lineLength - firstLineDecrease;
+  for (var part in parts) {
     if (buffer.length +
             part.length +
             (part == parts.last ? 0 : separator.length) >
@@ -57,7 +59,7 @@ List<String> splitInLines(String string, int lineLength,
       }
     }
 
-    int idx = 0;
+    var idx = 0;
     if (part == parts.last) {
       for (; idx + length < part.length; idx += length) {
         buffer.write(part.substring(idx, idx + length));
@@ -88,8 +90,8 @@ List<String> splitInLines(String string, int lineLength,
 String clearUnrequestedChars(String string, String validChars,
     {String replacementChar}) {
   replacementChar ??= '';
-  final StringBuffer buffer = StringBuffer();
-  for (int idx = 0; idx < string.length; idx++) {
+  final buffer = StringBuffer();
+  for (var idx = 0; idx < string.length; idx++) {
     if (validChars.contains(string[idx])) {
       buffer.write(string[idx]);
     } else {
@@ -104,8 +106,8 @@ String clearUnrequestedChars(String string, String validChars,
 String preserveOnlyChars(String string, String validChars,
     {String replacementChar}) {
   replacementChar ??= '';
-  final StringBuffer buffer = StringBuffer();
-  for (int idx = 0; idx < string.length; idx++) {
+  final buffer = StringBuffer();
+  for (var idx = 0; idx < string.length; idx++) {
     if (validChars.contains(string[idx])) {
       buffer.write(string[idx]);
     } else {
@@ -124,7 +126,7 @@ String capitalize(String string) {
   if (string.length == 1) {
     return string.toUpperCase();
   }
-  StringBuffer buffer = StringBuffer()
+  final buffer = StringBuffer()
     ..write(string[0].toUpperCase())
     ..write(string.substring(1, string.length).toLowerCase());
   return '$buffer';
