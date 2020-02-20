@@ -10,81 +10,24 @@ import 'string_extension.dart';
 /// that, if the string length is lesser than the length required
 /// the string is returned unchanged instead of throwing error
 /// If the string is null, null is returned
-String cut(String string, int length) {
-  if (string == null) {
-    return string;
-  }
-/*   if (string.length <= length) {
-    return string;
-  }
-  return string.substring(0, length); */
-  return string.cut(length);
-}
+String cut(String string, int length) => string?.cut(length);
 
+/// Cuts the String and, if lesser then required, aligns  it
+/// padding the exceeding chars to the right or to the left
+/// with the character selected.
 String cutAndAlign(String string, int newLength,
-    {String paddingChar, bool leftAlign}) {
-  return string.cutAndAlign(newLength,
-      paddingChar: paddingChar, leftAlign: leftAlign);
-  /*  paddingChar ??= ' ';
-  leftAlign ??= true;
-  final ret = cut(string, newLength);
-  if (leftAlign) {
-    return ret.padRight(newLength, paddingChar);
-  } else {
-    return ret.padLeft(newLength, paddingChar);
-  } */
-}
+        {String paddingChar, bool leftAlign}) =>
+    string.cutAndAlign(newLength,
+        paddingChar: paddingChar, leftAlign: leftAlign);
 
+/// Divides a String in lines of the length required.
+/// The default separator is blank, but it can be set a different char
+/// It is possible to set a different length for the first line.
 List<String> splitInLines(String string, int lineLength,
-    {String separator, int firstLineDecrease}) {
-  separator ??= ' ';
-  firstLineDecrease ??= 0;
-  final buffer = StringBuffer();
-  final ret = <String>[];
-  if (String == null) {
-    return ret;
-  }
-  //ignore: omit_local_variable_types
-  final List<String> parts = string.split(separator);
-  var length = lineLength - firstLineDecrease;
-  for (var part in parts) {
-    if (buffer.length +
-            part.length +
-            (part == parts.last ? 0 : separator.length) >
-        length) {
-      if (buffer.isNotEmpty) {
-        ret.add('$buffer');
-        buffer.clear();
-        length = lineLength;
-      }
-    }
-
-    var idx = 0;
-    if (part == parts.last) {
-      for (; idx + length < part.length; idx += length) {
-        buffer.write(part.substring(idx, idx + length));
-        ret.add('$buffer');
-        buffer.clear();
-        length = lineLength;
-      }
-      if (idx < part.length) {
-        buffer.write(part.substring(idx));
-      }
-    } else {
-      for (; idx + length < part.length + separator.length; idx += length) {
-        buffer.write(part.substring(idx, idx + length));
-        ret.add('$buffer');
-        buffer.clear();
-        length = lineLength;
-      }
-      if (idx < part.length) {
-        buffer.write(part.substring(idx));
-      }
-      buffer.write(separator);
-    }
-  }
-  return ret..add('$buffer');
-}
+        {String separator, int firstLineDecrease}) =>
+    string?.splitInLines(lineLength,
+        separator: separator, firstLineDecrease: firstLineDecrease) ??
+    <String>[];
 
 @Deprecated('Use preserveOnlyChars instead (wrong name)')
 String clearUnrequestedChars(String string, String validChars,
@@ -103,22 +46,16 @@ String clearUnrequestedChars(String string, String validChars,
   return buffer.toString();
 }
 
+/// Returns a String that is made of some required chars only.
+/// Optionally the removed characters can be substituted with
+/// a replacement char
 String preserveOnlyChars(String string, String validChars,
-    {String replacementChar}) {
-  replacementChar ??= '';
-  final buffer = StringBuffer();
-  for (var idx = 0; idx < string.length; idx++) {
-    if (validChars.contains(string[idx])) {
-      buffer.write(string[idx]);
-    } else {
-      if (replacementChar.isNotEmpty) {
-        buffer.write(replacementChar);
-      }
-    }
-  }
-  return buffer.toString();
-}
+        {String replacementChar}) =>
+    string.preserveOnlyChars(validChars, replacementChar: replacementChar);
 
+/// Capitalize the first character of the string and
+/// lowercase the others (using toUpperCase() and
+/// toLowerCase() respectively).
 String capitalize(String string) {
   if (unfilled(string)) {
     return '';

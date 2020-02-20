@@ -45,10 +45,34 @@ void main() {
           throwsRangeError);
     });
   });
+
+  group('Preserve only Chars', () {
+    setUp(() {});
+
+    test('Preserve only chars ok', () {
+      expect('5,769.34'.preserveOnlyChars('0123456789'), '576934');
+      expect('5,769.34'.preserveOnlyChars('0123456789', replacementChar: ' '),
+          '5 769 34');
+      expect('5,769.34'.preserveOnlyChars(''), '');
+      expect('5,769.34'.preserveOnlyChars('0123456789', replacementChar: null),
+          '576934');
+
+      expect(preserveOnlyChars('5,769.34', '0123456789'), '576934');
+      expect(preserveOnlyChars('5,769.34', '0123456789', replacementChar: ' '),
+          '5 769 34');
+    });
+
+    test('Preserve only chars error', () {
+      expect(
+          () => null.preserveOnlyChars('0123456789'), throwsNoSuchMethodError);
+      expect(() => '5,769.34'.preserveOnlyChars(null), throwsArgumentError);
+    });
+  });
+
   group('A group of tests', () {
     setUp(() {});
 
-    test('Capitalize Test', () {
+    test('Capitalize traditional', () {
       expect(capitalize('main'), 'Main');
       expect(capitalize(null), isEmpty);
       expect(capitalize(''), isEmpty);
@@ -57,6 +81,17 @@ void main() {
       expect(capitalize('i'), 'I');
       expect(capitalize('THETA'), 'Theta');
       expect(capitalize('jOhN'), 'John');
+    });
+
+    test('Capitalize', () {
+      expect('main'.capitalize(), 'Main');
+      expect(''.capitalize(), isEmpty);
+      expect('m'.capitalize(), 'M');
+      expect('M'.capitalize(), 'M');
+      expect('i'.capitalize(), 'I');
+      expect('THETA'.capitalize(), 'Theta');
+      expect('jOhN'.capitalize(), 'John');
+      expect(() => null.capitalize(), throwsNoSuchMethodError);
     });
 
     test('Empty or null', () {
@@ -130,6 +165,12 @@ void main() {
       expect(parts[5], 'aute irure reprehenderit in voluptate velit esse ');
       expect(parts.last, 'laborum.');
       // ignore: omit_local_variable_types
+      List<String> extParts = test.splitInLines(50);
+      expect(parts.length, extParts.length);
+      expect(parts.first, extParts.first);
+      expect(parts[5], extParts[5]);
+      expect(parts.last, extParts.last);
+      // ignore: omit_local_variable_types
       List<String> parts1 = splitInLines(test, 50, separator: ',');
       expect(parts1.length, 11);
       expect(parts1.first, 'Lorem ipsum dolor sit amet,');
@@ -137,7 +178,7 @@ void main() {
       expect(parts1[3], 'e magna aliqua. Ut enim ad minim veniam,');
       expect(parts1.last, ' est laborum.');
       // ignore: omit_local_variable_types
-      List<String> parts2 = splitInLines(test, 50, firstLineDecrease: 12);
+      List<String> parts2 = test.splitInLines(50, firstLineDecrease: 12);
       expect(parts2.length, 10);
       expect(parts2.first, 'Lorem ipsum dolor sit amet, ');
       expect(parts2[5], 'consequatur. Duis aute irure reprehenderit in ');
