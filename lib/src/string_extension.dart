@@ -1,3 +1,5 @@
+import 'package:vy_string_utils/src/reg_exp.dart';
+
 /// Copyright © 2016 Vidya sas. All rights reserved.
 /// Created by Giorgio on 20/11/2019.
 
@@ -97,8 +99,8 @@ extension StringExtension on String {
     final List<String> parts = split(separator);
     for (var part in parts) {
       if (buffer.length +
-              part.length +
-              (part == parts.last ? 0 : separator.length) >
+          part.length +
+          (part == parts.last ? 0 : separator.length) >
           requiredLength) {
         _writeAndFlushBuffer();
       }
@@ -114,8 +116,8 @@ extension StringExtension on String {
         }
       } else {
         for (;
-            idx + requiredLength < part.length + separator.length;
-            idx += requiredLength) {
+        idx + requiredLength < part.length + separator.length;
+        idx += requiredLength) {
           _writeAndFlushBuffer(
               addString: part.substring(idx, idx + requiredLength));
         }
@@ -135,4 +137,15 @@ extension StringExtension on String {
         if (isNotEmpty) this[0].toUpperCase(),
         if (length > 1) substring(1, length).toLowerCase()
       ].join();
+
+  /// A convenient way for checking if there are only digits.
+  bool onlyContainsDigits() => isNotEmpty && contains(onlyDigitsRegExp);
+
+  // A convenient way for checking if there are only alpha chars ([a-zA-Z]).
+  bool onlyContainsAlpha() => isNotEmpty && contains(onlyAlphaCharsRegExp);
+
+  // Verifies if the content of one source string in a certain position
+  /// is a Dart identifier.
+  bool isDartIdentifier(int startPosition) =>
+      isNotEmpty && startsWith(dartIdentifierRegExp, startPosition ?? 0);
 }

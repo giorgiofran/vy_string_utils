@@ -57,30 +57,37 @@ String preserveOnlyChars(String string, String validChars,
 /// lowercase the others (using toUpperCase() and
 /// toLowerCase() respectively).
 String capitalize(String string) {
-  if (unfilled(string)) {
-    return '';
-  }
+  return string?.capitalize() ?? '';
+  /*
   if (string.length == 1) {
     return string.toUpperCase();
   }
   final buffer = StringBuffer()
     ..write(string[0].toUpperCase())
     ..write(string.substring(1, string.length).toLowerCase());
-  return '$buffer';
+  return '$buffer';*/
 }
 
+/// unfilled() checks if the string is null or empty;
 bool unfilled(String string) => string?.isEmpty ?? true;
 
+/// filled() checks if the string contains data;
 bool filled(String string) => !unfilled(string);
 
+/// A convenient way for checking if there are only digits.
+/// Also null is accepted (in this case the method returns false...)
 bool onlyContainsDigits(String string) =>
-    filled(string) && string.contains(onlyDigitsRegExp);
+    filled(string) && string.onlyContainsDigits();
 
+/// A convenient way for checking if there are only alpha chars ([a-zA-Z]).
+/// Also null is accepted (in this case the method returns false...)
 bool onlyContainsAlpha(String string) =>
-    filled(string) && string.contains(onlyAlphaCharsRegExp);
+    filled(string) && string.onlyContainsAlpha();
 
+/// Verifies if the content of one source string in a certain position
+/// is a Dart identifier.
 bool isDartIdentifier(String source, int startPosition) =>
-    source.startsWith(dartIdentifierRegExp, startPosition ?? 0);
+    filled(source) && source.isDartIdentifier(startPosition);
 
 String getDartIdentifier(String source, int startPosition) =>
     dartIdentifierRegExp.matchAsPrefix(source, startPosition)?.group(0) ?? '';
