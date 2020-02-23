@@ -1,5 +1,4 @@
-/// Copyright © 2016 Vidya sas. All rights reserved.
-/// Created by Giorgio on 26/11/2019.
+/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
 
 final RegExp everythingButDigitsRegExpr = RegExp('[^0-9]*');
 

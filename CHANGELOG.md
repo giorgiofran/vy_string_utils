@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2
+
+- Completed all the extension methods
+
 ## 0.3.0
 
 - Moved to Dart 2.7.1

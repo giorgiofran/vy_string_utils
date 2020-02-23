@@ -1,7 +1,6 @@
-import 'package:vy_string_utils/src/reg_exp.dart'
-    show onlyAlphaCharsRegExp, onlyDigitsRegExp;
-import 'package:vy_string_utils/src/reg_exp.dart';
+/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
 
+import 'package:vy_string_utils/src/reg_exp.dart';
 import 'string_extension.dart';
 
 /// Cuts the String to the required length starting from the beginning
@@ -89,12 +88,25 @@ bool onlyContainsAlpha(String string) =>
 bool isDartIdentifier(String source, int startPosition) =>
     filled(source) && source.isDartIdentifier(startPosition);
 
+/// Extracts the identifier (if present) from a source string
+/// in a certain position.
 String getDartIdentifier(String source, int startPosition) =>
-    dartIdentifierRegExp.matchAsPrefix(source, startPosition)?.group(0) ?? '';
+    source?.getDartIdentifier(startPosition) ?? '';
 
+/// This is a very simple way of checking for an annotation
+/// it simply checks for an "@" followed by an identifier
+/// It cannot be considered proof safe, but in 99% of cases
+/// it should work
+///
+/// If you do not need a sophisticated selection it can be useful
+/// scanning a dart source
 bool isDartAnnotation(String source, int startPosition) =>
     source.startsWith(dartAnnotationRegExp, startPosition ?? 0);
 
+/// extracts the name of the identifier as described for the
+/// isDartAnnotation() method. Same limits as above.
+///
+/// The method simply returns tha annotation name, NOT the parameters (if any)
 String getDartAnnotationIdentifier(String source, int startPosition) =>
     dartAnnotationRegExp
         .matchAsPrefix(source, startPosition)

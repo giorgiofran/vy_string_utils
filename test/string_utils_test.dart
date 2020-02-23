@@ -130,14 +130,20 @@ void main() {
       expect(isDartIdentifier(source, 12), isTrue);
       expect(isDartIdentifier(source, 11), isTrue);
       expect(isDartIdentifier(source, 10), isFalse);
+      expect(source.isDartIdentifier(12), isTrue);
+      expect(source.isDartIdentifier(11), isTrue);
+      expect(source.isDartIdentifier(10), isFalse);
 
       expect(getDartIdentifier(source, 10), '');
       expect(getDartIdentifier(source, 11), '_LanguageType');
       expect(getDartIdentifier(source, 12), 'LanguageType');
+      expect(source.getDartIdentifier(10), '');
+      expect(source.getDartIdentifier(11), '_LanguageType');
+      expect(source.getDartIdentifier(12), 'LanguageType');
     });
     test('Dart Annotation Identifier', () {
       final source = '''
-      enum @Annotate('Test note')
+           @Annotate('Test note')
       ''';
 
       expect(isDartAnnotation(source, 12), isFalse);

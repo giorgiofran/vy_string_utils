@@ -1,7 +1,6 @@
-import 'package:vy_string_utils/src/reg_exp.dart';
+/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
 
-/// Copyright © 2016 Vidya sas. All rights reserved.
-/// Created by Giorgio on 20/11/2019.
+import 'package:vy_string_utils/src/reg_exp.dart';
 
 extension StringExtension on String {
   /// Cuts the String to the required length starting from the beginning
@@ -134,9 +133,9 @@ extension StringExtension on String {
   /// lowercase the others (using toUpperCase() and
   /// toLowerCase() respectively).
   String capitalize() => [
-        if (isNotEmpty) this[0].toUpperCase(),
-        if (length > 1) substring(1, length).toLowerCase()
-      ].join();
+    if (isNotEmpty) this[0].toUpperCase(),
+    if (length > 1) substring(1, length).toLowerCase()
+  ].join();
 
   /// A convenient way for checking if there are only digits.
   bool onlyContainsDigits() => isNotEmpty && contains(onlyDigitsRegExp);
@@ -148,4 +147,9 @@ extension StringExtension on String {
   /// is a Dart identifier.
   bool isDartIdentifier(int startPosition) =>
       isNotEmpty && startsWith(dartIdentifierRegExp, startPosition ?? 0);
+
+  // Extracts the identifier (if present) from a source string
+  /// in a certain position.
+  String getDartIdentifier(int startPosition) =>
+      dartIdentifierRegExp.matchAsPrefix(this, startPosition)?.group(0) ?? '';
 }
