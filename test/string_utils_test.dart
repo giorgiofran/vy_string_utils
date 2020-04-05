@@ -1,3 +1,5 @@
+/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
+
 import 'package:vy_string_utils/vy_string_utils.dart';
 import 'package:test/test.dart';
 
@@ -40,7 +42,7 @@ void main() {
     test('Cut and Align error', () {
       expect(() => null.cutAndAlign(15), throwsNoSuchMethodError);
       expect(
-          () =>
+              () =>
               'please cut'.cutAndAlign(-1, leftAlign: false, paddingChar: '*'),
           throwsRangeError);
     });
@@ -64,7 +66,7 @@ void main() {
 
     test('Preserve only chars error', () {
       expect(
-          () => null.preserveOnlyChars('0123456789'), throwsNoSuchMethodError);
+              () => null.preserveOnlyChars('0123456789'), throwsNoSuchMethodError);
       expect(() => '5,769.34'.preserveOnlyChars(null), throwsArgumentError);
     });
   });
@@ -73,25 +75,43 @@ void main() {
     setUp(() {});
 
     test('Capitalize traditional', () {
-      expect(capitalize('main'), 'Main');
-      expect(capitalize(null), isEmpty);
-      expect(capitalize(''), isEmpty);
-      expect(capitalize('m'), 'M');
-      expect(capitalize('M'), 'M');
-      expect(capitalize('i'), 'I');
-      expect(capitalize('THETA'), 'Theta');
-      expect(capitalize('jOhN'), 'John');
+      expect(capitalizeAndLowercase('main'), 'Main');
+      expect(capitalizeAndLowercase(null), isEmpty);
+      expect(capitalizeAndLowercase(''), isEmpty);
+      expect(capitalizeAndLowercase('m'), 'M');
+      expect(capitalizeAndLowercase('M'), 'M');
+      expect(capitalizeAndLowercase('i'), 'I');
+      expect(capitalizeAndLowercase('THETA'), 'Theta');
+      expect(capitalizeAndLowercase('jOhN'), 'John');
     });
 
     test('Capitalize', () {
-      expect('main'.capitalize(), 'Main');
-      expect(''.capitalize(), isEmpty);
-      expect('m'.capitalize(), 'M');
-      expect('M'.capitalize(), 'M');
-      expect('i'.capitalize(), 'I');
-      expect('THETA'.capitalize(), 'Theta');
-      expect('jOhN'.capitalize(), 'John');
+      expect('main'.capitalizeAndLowercase(), 'Main');
+      expect(''.capitalizeAndLowercase(), isEmpty);
+      expect('m'.capitalizeAndLowercase(), 'M');
+      expect('M'.capitalizeAndLowercase(), 'M');
+      expect('i'.capitalizeAndLowercase(), 'I');
+      expect('THETA'.capitalizeAndLowercase(), 'Theta');
+      expect('jOhN'.capitalizeAndLowercase(), 'John');
       expect(() => null.capitalize(), throwsNoSuchMethodError);
+
+      expect('main'.capitalizeRestUnchanged(), 'Main');
+      expect(''.capitalizeRestUnchanged(), isEmpty);
+      expect('m'.capitalizeRestUnchanged(), 'M');
+      expect('M'.capitalizeRestUnchanged(), 'M');
+      expect('i'.capitalizeRestUnchanged(), 'I');
+      expect('THETA'.capitalizeRestUnchanged(), 'THETA');
+      expect('jOhN'.capitalizeRestUnchanged(), 'JOhN');
+    });
+
+    test('Uncapitalize', () {
+      expect('Main'.uncapitalizeRestUnchanged(), 'main');
+      expect(''.uncapitalizeRestUnchanged(), isEmpty);
+      expect('M'.uncapitalizeRestUnchanged(), 'm');
+      expect('m'.uncapitalizeRestUnchanged(), 'm');
+      expect('I'.uncapitalizeRestUnchanged(), 'i');
+      expect('THETA'.uncapitalizeRestUnchanged(), 'tHETA');
+      expect('JOhN'.uncapitalizeRestUnchanged(), 'jOhN');
     });
 
     test('Empty or null', () {

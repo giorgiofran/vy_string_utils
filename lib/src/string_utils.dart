@@ -55,17 +55,23 @@ String preserveOnlyChars(String string, String validChars,
 /// Capitalize the first character of the string and
 /// lowercase the others (using toUpperCase() and
 /// toLowerCase() respectively).
-String capitalize(String string) {
-  return string?.capitalize() ?? '';
-  /*
-  if (string.length == 1) {
-    return string.toUpperCase();
-  }
-  final buffer = StringBuffer()
-    ..write(string[0].toUpperCase())
-    ..write(string.substring(1, string.length).toLowerCase());
-  return '$buffer';*/
-}
+String capitalizeAndLowercase(String string) =>
+    string?.capitalizeAndLowercase() ?? '';
+
+@Deprecated('Use capitalizeAndLowercase instead.')
+String capitalize(String string) => string?.capitalizeAndLowercase() ?? '';
+
+/// Capitalize the first character of the string and
+/// leaves the rest as is.
+/// In a future release will be called only capitalize
+String capitalizeRestUnchanged(String string) =>
+    string?.capitalizeRestUnchanged() ?? '';
+
+/// Uncapitalize the first character of the string and
+/// leaves the rest as is.
+/// In a future release will be called only uncapitalize
+String uncapitalizeRestUnchanged(String string) =>
+    string?.uncapitalizeRestUnchanged() ?? '';
 
 /// unfilled() checks if the string is null or empty;
 bool unfilled(String string) => string?.isEmpty ?? true;

@@ -18,7 +18,7 @@ The main methods are:
   
   All these methods are presented also as extensions.
   
-[license](https://github.com/giorgiofran/vy_string_utils/blob/master/CHANGELOG.md).
+[license](https://github.com/giorgiofran/vy_string_utils/blob/master/LICENSE).
 
 ## Usage
 

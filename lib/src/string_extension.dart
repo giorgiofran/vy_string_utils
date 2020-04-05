@@ -98,8 +98,8 @@ extension StringExtension on String {
     final List<String> parts = split(separator);
     for (var part in parts) {
       if (buffer.length +
-          part.length +
-          (part == parts.last ? 0 : separator.length) >
+              part.length +
+              (part == parts.last ? 0 : separator.length) >
           requiredLength) {
         _writeAndFlushBuffer();
       }
@@ -132,10 +132,32 @@ extension StringExtension on String {
   /// Capitalize the first character of the string and
   /// lowercase the others (using toUpperCase() and
   /// toLowerCase() respectively).
-  String capitalize() => [
-    if (isNotEmpty) this[0].toUpperCase(),
-    if (length > 1) substring(1, length).toLowerCase()
-  ].join();
+  String capitalizeAndLowercase() =>
+      [
+        if (isNotEmpty) this[0].toUpperCase(),
+        if (length > 1) substring(1, length).toLowerCase()
+      ].join();
+
+  /// Capitalize the first character of the string and
+  /// leaves the rest as is.
+  /// In a future release will be called only capitalize
+  String capitalizeRestUnchanged() =>
+      [
+        if (isNotEmpty) this[0].toUpperCase(),
+        if (length > 1) substring(1, length)
+      ].join();
+
+  /// Uncapitalize the first character of the string and
+  /// leaves the rest as is.
+  /// In a future release will be called only uncapitalize
+  String uncapitalizeRestUnchanged() =>
+      [
+        if (isNotEmpty) this[0].toLowerCase(),
+        if (length > 1) substring(1, length)
+      ].join();
+
+  @Deprecated('Use capitalizeAndLowercase instead.')
+  String capitalize() => capitalizeAndLowercase();
 
   /// A convenient way for checking if there are only digits.
   bool onlyContainsDigits() => isNotEmpty && contains(onlyDigitsRegExp);

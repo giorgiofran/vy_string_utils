@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+- Renamed capitalize() into capitalizeAndLowercase(). A deprecated capitalize() method has been created. In the future will be removed.
+- Added simple DateTime formatter for logs.
+- Added capitalizeRestUnchanged() and uncapitalizeRestUnchanged() methods
+
 ## 0.3.2
 
 - Completed all the extension methods

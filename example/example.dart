@@ -1,3 +1,5 @@
+/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
+
 import 'package:vy_string_utils/vy_string_utils.dart';
 
 void main() {
@@ -16,9 +18,9 @@ void main() {
   print('5,769.34'
       .preserveOnlyChars('0123456789', replacementChar: ' ')); // '5 769 34'
 
-  print('main'.capitalize()); // 'Main'
-  print('THETA'.capitalize()); // 'Theta'
-  print('jOhN'.capitalize()); // 'John'
+  print('main'.capitalizeAndLowercase()); // 'Main'
+  print('THETA'.capitalizeAndLowercase()); // 'Theta'
+  print('jOhN'.capitalizeAndLowercase()); // 'John'
 
   print(unfilled(null)); // true
   print(unfilled('')); // true
