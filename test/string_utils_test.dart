@@ -12,13 +12,13 @@ void main() {
       expect(cut('please cut here this string', 15), 'please cut here');
       expect('please cut'.cut(15), 'please cut');
       expect(cut('please cut', 15), 'please cut');
-      expect(cut(null, 15), null);
-      String test;
-      expect(test?.cut(3), null);
+      //expect(cut(null, 15), null);
+      //String test;
+      //expect(test?.cut(3), null);
     });
 
     test('Cut error', () {
-      expect(() => null.cut(15), throwsNoSuchMethodError);
+      //expect(() => null.cut(15), throwsNoSuchMethodError);
       expect(() => 'please cut'.cut(-1), throwsRangeError);
     });
   });
@@ -40,9 +40,9 @@ void main() {
     });
 
     test('Cut and Align error', () {
-      expect(() => null.cutAndAlign(15), throwsNoSuchMethodError);
+      //expect(() => null.cutAndAlign(15), throwsNoSuchMethodError);
       expect(
-              () =>
+          () =>
               'please cut'.cutAndAlign(-1, leftAlign: false, paddingChar: '*'),
           throwsRangeError);
     });
@@ -64,11 +64,11 @@ void main() {
           '5 769 34');
     });
 
-    test('Preserve only chars error', () {
+    /*  test('Preserve only chars error', () {
       expect(
               () => null.preserveOnlyChars('0123456789'), throwsNoSuchMethodError);
       expect(() => '5,769.34'.preserveOnlyChars(null), throwsArgumentError);
-    });
+    }); */
   });
 
   group('A group of tests', () {
@@ -76,7 +76,7 @@ void main() {
 
     test('Capitalize traditional', () {
       expect(capitalizeAndLowercase('main'), 'Main');
-      expect(capitalizeAndLowercase(null), isEmpty);
+      //expect(capitalizeAndLowercase(null), isEmpty);
       expect(capitalizeAndLowercase(''), isEmpty);
       expect(capitalizeAndLowercase('m'), 'M');
       expect(capitalizeAndLowercase('M'), 'M');
@@ -93,7 +93,7 @@ void main() {
       expect('i'.capitalizeAndLowercase(), 'I');
       expect('THETA'.capitalizeAndLowercase(), 'Theta');
       expect('jOhN'.capitalizeAndLowercase(), 'John');
-      expect(() => null.capitalize(), throwsNoSuchMethodError);
+      //expect(() => null.capitalize(), throwsNoSuchMethodError);
 
       expect('main'.capitalizeRestUnchanged(), 'Main');
       expect(''.capitalizeRestUnchanged(), isEmpty);
@@ -123,7 +123,7 @@ void main() {
 
     test('Only digits', () {
       expect(onlyContainsDigits('Value'), isFalse);
-      expect(onlyContainsDigits(null), isFalse);
+      //expect(onlyContainsDigits(null), isFalse);
       expect(onlyContainsDigits(''), isFalse);
       expect(onlyContainsDigits('A234'), isFalse);
       expect(onlyContainsDigits('2712b'), isFalse);
@@ -133,7 +133,7 @@ void main() {
     });
     test('Only alpha', () {
       expect(onlyContainsAlpha('Value'), isTrue);
-      expect(onlyContainsAlpha(null), isFalse);
+      //expect(onlyContainsAlpha(null), isFalse);
       expect(onlyContainsAlpha(''), isFalse);
       expect(onlyContainsAlpha('A234'), isFalse);
       expect(onlyContainsAlpha('2712b'), isFalse);

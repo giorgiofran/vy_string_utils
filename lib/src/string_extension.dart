@@ -8,7 +8,6 @@ extension StringExtension on String {
   /// This method works approximately like the substring one, with the difference
   /// that, if the string length is lesser than the length required
   /// the string is returned unchanged instead of throwing error
-  /// If the string is null, null is returned
   ///
   /// Example: 'Cut This'.cut(3)  returns 'Cut'
   ///          'Cut This'.cut(10) returns 'Cut This'
@@ -32,7 +31,7 @@ extension StringExtension on String {
   ///               leftAlign: false) returns '**Cut This'
   ///
   /// The method only works from the beginning of the string
-  String cutAndAlign(int newLength, {String paddingChar, bool leftAlign}) {
+  String cutAndAlign(int newLength, {String? paddingChar, bool? leftAlign}) {
     paddingChar ??= ' ';
     leftAlign ??= true;
     final ret = cut(newLength);
@@ -49,10 +48,10 @@ extension StringExtension on String {
   ///
   /// Example: '5,3798.00'.preserveOnlyChars('0123456789') returns '5379800'
   ///          '5,3798.00'.preserveOnlyChars('0123456789', replacementChar: ' ') returns '5 3798 00'
-  String preserveOnlyChars(String validChars, {String replacementChar}) {
-    if (validChars == null) {
+  String preserveOnlyChars(String validChars, {String? replacementChar}) {
+ /*    if (validChars == null) {
       throw ArgumentError('The validChar parameter cannot be null');
-    }
+    } */
     replacementChar ??= '';
     final buffer = StringBuffer();
     for (var idx = 0; idx < length; idx++) {
@@ -76,14 +75,14 @@ extension StringExtension on String {
   ///     ['consequatur', ' mollit est']
 
   List<String> splitInLines(int lineLength,
-      {String separator, int firstLineDecrease}) {
+      {String? separator, int? firstLineDecrease}) {
     separator ??= ' ';
     firstLineDecrease ??= 0;
     final buffer = StringBuffer();
     final ret = <String>[];
     var requiredLength = lineLength - firstLineDecrease;
 
-    void _writeAndFlushBuffer({String addString}) {
+    void _writeAndFlushBuffer({String? addString}) {
       if (addString != null) {
         buffer.write(addString);
       }
@@ -94,8 +93,7 @@ extension StringExtension on String {
       }
     }
 
-    //ignore: omit_local_variable_types
-    final List<String> parts = split(separator);
+    final parts = split(separator);
     for (var part in parts) {
       if (buffer.length +
               part.length +
@@ -168,7 +166,7 @@ extension StringExtension on String {
   // Verifies if the content of one source string in a certain position
   /// is a Dart identifier.
   bool isDartIdentifier(int startPosition) =>
-      isNotEmpty && startsWith(dartIdentifierRegExp, startPosition ?? 0);
+      isNotEmpty && startsWith(dartIdentifierRegExp, startPosition);
 
   // Extracts the identifier (if present) from a source string
   /// in a certain position.

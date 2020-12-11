@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0-nullsafety
+
+- Breaking change: assuming that now null values are easier to detect, most of the methods requires a non null value. Only the `filled` and `unfilled` methods still accepts null values.
+
 ## 0.3.3
 
 - Renamed capitalize() into capitalizeAndLowercase(). A deprecated capitalize() method has been created. In the future will be removed.
@@ -17,7 +21,7 @@
 
 ## 0.2.1
 
-- Fixed a minor error in splitInLines() method 
+- Fixed a minor error in splitInLines() method
 
 ## 0.2.0
 

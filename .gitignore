@@ -9,3 +9,8 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# Ide folders
+.idea/
+.vscode/
+
