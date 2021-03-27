@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- list utils
+- basic Map utils
+- basic Set utils
+
 ## 0.4.0-nullsafety
 
 - Breaking change: assuming that now null values are easier to detect, most of the methods requires a non null value. Only the `filled` and `unfilled` methods still accepts null values.
