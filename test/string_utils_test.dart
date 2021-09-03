@@ -103,6 +103,20 @@ void main() {
       expect('THETA'.capitalizeRestUnchanged(), 'THETA');
       expect('jOhN'.capitalizeRestUnchanged(), 'JOhN');
     });
+    test('Capitalize and lowercase Any Word', () {
+      expect('main'.capitalizeAndLowercaseAnyWord(), 'Main');
+      expect(''.capitalizeAndLowercaseAnyWord(), isEmpty);
+      expect('m'.capitalizeAndLowercase(), 'M');
+      expect('M'.capitalizeAndLowercaseAnyWord(), 'M');
+      expect('i'.capitalizeAndLowercaseAnyWord(), 'I');
+      expect('THETA'.capitalizeAndLowercaseAnyWord(), 'Theta');
+      expect(
+          'jOhN, iS FInE.'.capitalizeAndLowercaseAnyWord(), 'John, Is Fine.');
+      expect(
+          ' the quick brown fox jumps over the lazy dog. '
+              .capitalizeAndLowercaseAnyWord(),
+          'The Quick Brown Fox Jumps Over The Lazy Dog.');
+    });
 
     test('Uncapitalize', () {
       expect('Main'.uncapitalizeRestUnchanged(), 'main');
@@ -143,7 +157,8 @@ void main() {
       expect(onlyContainsAlpha('en_US'), isFalse);
     });
     test('Dart Identifier', () {
-      final source = '''
+      final source =
+          '''
       enum _LanguageType{ dart, cPlusPlus, c, java, python}
       ''';
 

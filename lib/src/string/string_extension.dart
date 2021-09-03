@@ -49,7 +49,7 @@ extension StringExtension on String {
   /// Example: '5,3798.00'.preserveOnlyChars('0123456789') returns '5379800'
   ///          '5,3798.00'.preserveOnlyChars('0123456789', replacementChar: ' ') returns '5 3798 00'
   String preserveOnlyChars(String validChars, {String? replacementChar}) {
- /*    if (validChars == null) {
+    /*    if (validChars == null) {
       throw ArgumentError('The validChar parameter cannot be null');
     } */
     replacementChar ??= '';
@@ -113,8 +113,8 @@ extension StringExtension on String {
         }
       } else {
         for (;
-        idx + requiredLength < part.length + separator.length;
-        idx += requiredLength) {
+            idx + requiredLength < part.length + separator.length;
+            idx += requiredLength) {
           _writeAndFlushBuffer(
               addString: part.substring(idx, idx + requiredLength));
         }
@@ -130,17 +130,23 @@ extension StringExtension on String {
   /// Capitalize the first character of the string and
   /// lowercase the others (using toUpperCase() and
   /// toLowerCase() respectively).
-  String capitalizeAndLowercase() =>
-      [
+  String capitalizeAndLowercase() => [
         if (isNotEmpty) this[0].toUpperCase(),
         if (length > 1) substring(1, length).toLowerCase()
       ].join();
 
+  /// Capitalize the first character of any word in the string string and
+  /// lowercase the others (using toUpperCase() and
+  /// toLowerCase() respectively).
+  /// The method also execute am implicit trim() on the atring
+  String capitalizeAndLowercaseAnyWord() => [
+        for (var part in trim().split(' ')) part.capitalizeAndLowercase()
+      ].join(' ');
+
   /// Capitalize the first character of the string and
   /// leaves the rest as is.
   /// In a future release will be called only capitalize
-  String capitalizeRestUnchanged() =>
-      [
+  String capitalizeRestUnchanged() => [
         if (isNotEmpty) this[0].toUpperCase(),
         if (length > 1) substring(1, length)
       ].join();
@@ -148,8 +154,7 @@ extension StringExtension on String {
   /// Uncapitalize the first character of the string and
   /// leaves the rest as is.
   /// In a future release will be called only uncapitalize
-  String uncapitalizeRestUnchanged() =>
-      [
+  String uncapitalizeRestUnchanged() => [
         if (isNotEmpty) this[0].toLowerCase(),
         if (length > 1) substring(1, length)
       ].join();

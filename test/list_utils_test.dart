@@ -62,6 +62,21 @@ void main() {
       expect(destString.first['second'], 'John');
     });
 
+    test('test test', () {
+      var fooList = <List<Object>>[
+        ['key'],
+      ];
+     /*  print('ListType: ${fooList.runtimeType}');
+      for (var element in fooList) {
+        print('$element, ${element.runtimeType}');
+      } */
+      var list = <List<Object>>[['foo']];
+      print('$list, ${list.runtimeType}');
+       for (var element in list) {
+        print('$element, ${element.runtimeType}');
+      }
+    });
+
     test('Complex With discard list', () {
       var fool = [
         {'first': 4},

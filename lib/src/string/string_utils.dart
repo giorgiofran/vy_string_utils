@@ -55,6 +55,13 @@ String preserveOnlyChars(String string, String validChars,
 /// toLowerCase() respectively).
 String capitalizeAndLowercase(String string) => string.capitalizeAndLowercase();
 
+/// Capitalize the first character of any word in the string string and
+/// lowercase the others (using toUpperCase() and
+/// toLowerCase() respectively).
+/// The method also execute am implicit trim() on the atring
+String capitalizeAndLowercaseAnyWord(String string) =>
+    string.capitalizeAndLowercaseAnyWord();
+
 @Deprecated('Use capitalizeAndLowercase instead.')
 String capitalize(String string) => string.capitalizeAndLowercase();
 

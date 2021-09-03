@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- added method `capitalizeAndLowercaseAnyWord()`
+
 ## 0.4.0
 
 - list utils
