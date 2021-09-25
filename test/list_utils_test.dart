@@ -66,13 +66,15 @@ void main() {
       var fooList = <List<Object>>[
         ['key'],
       ];
-     /*  print('ListType: ${fooList.runtimeType}');
+      /*  print('ListType: ${fooList.runtimeType}');
       for (var element in fooList) {
         print('$element, ${element.runtimeType}');
       } */
-      var list = <List<Object>>[['foo']];
+      var list = <List<Object>>[
+        ['foo']
+      ];
       print('$list, ${list.runtimeType}');
-       for (var element in list) {
+      for (var element in list) {
         print('$element, ${element.runtimeType}');
       }
     });

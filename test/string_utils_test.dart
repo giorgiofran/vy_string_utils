@@ -157,8 +157,7 @@ void main() {
       expect(onlyContainsAlpha('en_US'), isFalse);
     });
     test('Dart Identifier', () {
-      final source =
-          '''
+      final source = '''
       enum _LanguageType{ dart, cPlusPlus, c, java, python}
       ''';
 
