@@ -1,6 +1,6 @@
 name: vy_string_utils
 description: Collection of simple string and other types utilities.
-version: 0.4.1
+version: 0.4.2
 homepage: https://github.com/giorgiofran/vy_string_utils
 
 environment:

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2
+
+- fix in `splitInLines()` when `firstLineDecrease` parm  is greater than `lineLength` one.
+
 ## 0.4.1
 
 - added method `capitalizeAndLowercaseAnyWord()`

@@ -93,6 +93,10 @@ extension StringExtension on String {
       }
     }
 
+    if (requiredLength < 1) {
+      _writeAndFlushBuffer(addString: ' ');
+    }
+
     final parts = split(separator);
     for (var part in parts) {
       if (buffer.length +
