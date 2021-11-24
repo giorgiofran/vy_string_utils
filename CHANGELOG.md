@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.3
+
+New string methods:
+
+- startsAndEndsWith() - Verifies if the string starts and ends with the same given delimiter
+- trimDelimiters() - If the string starts and ends with the same given delimiter, those are removed
+- trimStringDelimiters() If the string starts and ends with the same string delimiter, those are removed
+
 ## 0.4.2
 
 - fix in `splitInLines()` when `firstLineDecrease` parm  is greater than `lineLength` one.

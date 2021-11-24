@@ -302,5 +302,138 @@ void main() {
       expect(test1, parts3.join());
       expect(test1, parts4.join());
     });
+
+    test('startsAndEnds', () {
+      expect('"test"'.startsAndEndsWith('"'), isTrue);
+      expect('test'.startsAndEndsWith('"'), isFalse);
+      expect('"test'.startsAndEndsWith('"'), isFalse);
+      expect('test"'.startsAndEndsWith('"'), isFalse);
+      expect(' "test"'.startsAndEndsWith('"'), isFalse);
+      expect('"test" '.startsAndEndsWith('"'), isFalse);
+
+      expect("'test'".startsAndEndsWith("'"), isTrue);
+      expect("test'".startsAndEndsWith("'"), isFalse);
+      expect("'test".startsAndEndsWith("'"), isFalse);
+      expect(" 'test'".startsAndEndsWith("'"), isFalse);
+      expect("'test' ".startsAndEndsWith("'"), isFalse);
+
+      expect("'''test'''".startsAndEndsWith("'''"), isTrue);
+      expect("''''test''''".startsAndEndsWith("'''"), isTrue);
+      expect("test'''".startsAndEndsWith("'''"), isFalse);
+      expect("'''test".startsAndEndsWith("'''"), isFalse);
+      expect(" '''test'''".startsAndEndsWith("'''"), isFalse);
+      expect("'''test''' ".startsAndEndsWith("'''"), isFalse);
+
+      expect(startsAndEndsWith('"test"', '"'), isTrue);
+      expect(startsAndEndsWith('test', '"'), isFalse);
+      expect(startsAndEndsWith('"test', '"'), isFalse);
+      expect(startsAndEndsWith('test"', '"'), isFalse);
+      expect(startsAndEndsWith(' "test"', '"'), isFalse);
+      expect(startsAndEndsWith('"test" ', '"'), isFalse);
+
+      expect(startsAndEndsWith("'test'", "'"), isTrue);
+      expect(startsAndEndsWith("test'", "'"), isFalse);
+      expect(startsAndEndsWith("'test", "'"), isFalse);
+      expect(startsAndEndsWith(" 'test'", "'"), isFalse);
+      expect(startsAndEndsWith("'test' ", "'"), isFalse);
+
+      expect(startsAndEndsWith("'''test'''", "'''"), isTrue);
+      expect(startsAndEndsWith("''''test''''", "'''"), isTrue);
+      expect(startsAndEndsWith("test'''", "'''"), isFalse);
+      expect(startsAndEndsWith("'''test", "'''"), isFalse);
+      expect(startsAndEndsWith(" '''test'''", "'''"), isFalse);
+      expect(startsAndEndsWith("'''test''' ", "'''"), isFalse);
+    });
+
+    test('trim delimiters', () {
+      expect('"test"'.trimDelimiters('"'), 'test');
+      expect('test'.trimDelimiters('"'), 'test');
+      expect('"test'.trimDelimiters('"'), '"test');
+      expect('test"'.trimDelimiters('"'), 'test"');
+      expect(' "test"'.trimDelimiters('"'), ' "test"');
+      expect('"test" '.trimDelimiters('"'), '"test" ');
+      expect('"test"'.trimDelimiters('"'), 'test');
+
+      expect('-test-'.trimDelimiters('-'), 'test');
+      expect('-test'.trimDelimiters('-'), '-test');
+      expect('test-'.trimDelimiters('-'), 'test-');
+      expect(' -test-'.trimDelimiters('-'), ' -test-');
+      expect('-test- '.trimDelimiters('-'), '-test- ');
+
+      expect("'test'".trimDelimiters("'"), 'test');
+      expect("test'".trimDelimiters("'"), "test'");
+      expect("'test".trimDelimiters("'"), "'test");
+      expect(" 'test'".trimDelimiters("'"), " 'test'");
+      expect("'test' ".trimDelimiters("'"), "'test' ");
+
+      expect("'''test'''".trimDelimiters("'''"), 'test');
+      expect("''''test''''".trimDelimiters("'''"), "'test'");
+      expect("test'''".trimDelimiters("'''"), "test'''");
+      expect("'''test".trimDelimiters("'''"), "'''test");
+      expect(" '''test'''".trimDelimiters("'''"), " '''test'''");
+      expect("'''test''' ".trimDelimiters("'''"), "'''test''' ");
+
+      expect(trimDelimiters('"test"', '"'), 'test');
+      expect(trimDelimiters('test', '"'), 'test');
+      expect(trimDelimiters('"test', '"'), '"test');
+      expect(trimDelimiters('test"', '"'), 'test"');
+      expect(trimDelimiters(' "test"', '"'), ' "test"');
+      expect(trimDelimiters('"test" ', '"'), '"test" ');
+
+      expect(trimDelimiters("'test'", "'"), 'test');
+      expect(trimDelimiters("test'", "'"), "test'");
+      expect(trimDelimiters("'test", "'"), "'test");
+      expect(trimDelimiters(" 'test'", "'"), " 'test'");
+      expect(trimDelimiters("'test' ", "'"), "'test' ");
+
+      expect(trimDelimiters("'''test'''", "'''"), 'test');
+      expect(trimDelimiters("''''test''''", "'''"), "'test'");
+      expect(trimDelimiters("test'''", "'''"), "test'''");
+      expect(trimDelimiters("'''test", "'''"), "'''test");
+      expect(trimDelimiters(" '''test'''", "'''"), " '''test'''");
+      expect(trimDelimiters("'''test''' ", "'''"), "'''test''' ");
+    });
+
+    test('trim String delimiters', () {
+      expect('"test"'.trimStringDelimiters(), 'test');
+      expect('test'.trimStringDelimiters(), 'test');
+      expect('"test'.trimStringDelimiters(), '"test');
+      expect('test"'.trimStringDelimiters(), 'test"');
+      expect(' "test"'.trimStringDelimiters(), ' "test"');
+      expect('"test" '.trimStringDelimiters(), '"test" ');
+
+      expect("'test'".trimStringDelimiters(), 'test');
+      expect("test'".trimStringDelimiters(), "test'");
+      expect("'test".trimStringDelimiters(), "'test");
+      expect(" 'test'".trimStringDelimiters(), " 'test'");
+      expect("'test' ".trimStringDelimiters(), "'test' ");
+
+      expect("'''test'''".trimStringDelimiters(), 'test');
+      expect("''''test''''".trimStringDelimiters(), "'test'");
+      expect("test'''".trimStringDelimiters(), "test'''");
+      expect("'''test".trimStringDelimiters(), "'''test");
+      expect(" '''test'''".trimStringDelimiters(), " '''test'''");
+      expect("'''test''' ".trimStringDelimiters(), "'''test''' ");
+
+      expect(trimStringDelimiters('"test"'), 'test');
+      expect(trimStringDelimiters('test'), 'test');
+      expect(trimStringDelimiters('"test'), '"test');
+      expect(trimStringDelimiters('test"'), 'test"');
+      expect(trimStringDelimiters(' "test"'), ' "test"');
+      expect(trimStringDelimiters('"test" '), '"test" ');
+
+      expect(trimStringDelimiters("'test'"), 'test');
+      expect(trimStringDelimiters("test'"), "test'");
+      expect(trimStringDelimiters("'test"), "'test");
+      expect(trimStringDelimiters(" 'test'"), " 'test'");
+      expect(trimStringDelimiters("'test' "), "'test' ");
+
+      expect(trimStringDelimiters("'''test'''"), 'test');
+      expect(trimStringDelimiters("''''test''''"), "'test'");
+      expect(trimStringDelimiters("test'''"), "test'''");
+      expect(trimStringDelimiters("'''test"), "'''test");
+      expect(trimStringDelimiters(" '''test'''"), " '''test'''");
+      expect(trimStringDelimiters("'''test''' "), "'''test''' ");
+    });
   });
 }

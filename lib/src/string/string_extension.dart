@@ -169,16 +169,44 @@ extension StringExtension on String {
   /// A convenient way for checking if there are only digits.
   bool onlyContainsDigits() => isNotEmpty && contains(onlyDigitsRegExp);
 
-  // A convenient way for checking if there are only alpha chars ([a-zA-Z]).
+  /// A convenient way for checking if there are only alpha chars ([a-zA-Z]).
   bool onlyContainsAlpha() => isNotEmpty && contains(onlyAlphaCharsRegExp);
 
-  // Verifies if the content of one source string in a certain position
+  /// Verifies if the content of one source string in a certain position
   /// is a Dart identifier.
   bool isDartIdentifier(int startPosition) =>
       isNotEmpty && startsWith(dartIdentifierRegExp, startPosition);
 
-  // Extracts the identifier (if present) from a source string
+  /// Extracts the identifier (if present) from a source string
   /// in a certain position.
   String getDartIdentifier(int startPosition) =>
       dartIdentifierRegExp.matchAsPrefix(this, startPosition)?.group(0) ?? '';
+
+  /// Returns true if this string starts and ends with the same given string
+  /// If whitespaces can be present is better to execute first a trim()
+  /// call.
+  bool startsAndEndsWith(String delimiter) {
+    if (startsWith(delimiter) && endsWith(delimiter)) {
+      return true;
+    }
+    return false;
+  }
+
+  /// Removes the given delimiters (if present) from the string
+  String trimDelimiters(String delimiter) {
+    if (startsAndEndsWith(delimiter)) {
+      return substring(delimiter.length, length - delimiter.length);
+    }
+    return this;
+  }
+
+  /// Removes String delimiters if present (only the outer ones);
+  String trimStringDelimiters() {
+    if (startsAndEndsWith("'''")) {
+      return substring(3, length - 3);
+    } else if (startsAndEndsWith("'") || startsAndEndsWith('"')) {
+      return substring(1, length - 1);
+    }
+    return this;
+  }
 }

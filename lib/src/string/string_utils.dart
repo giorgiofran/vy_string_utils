@@ -123,3 +123,16 @@ String getDartAnnotationIdentifier(String source, int startPosition) =>
         ?.group(0)
         ?.substring(1) ??
     '';
+
+/// Returns true if this string starts and ends with the same given string
+/// If whitespaces can be present is better to execute first a trim()
+/// call.
+bool startsAndEndsWith(String string, String delimiter) =>
+    string.startsAndEndsWith(delimiter);
+
+/// Removes the given delimiters (if present) from the string
+String trimDelimiters(String string, String delimiter) =>
+    string.trimDelimiters(delimiter);
+
+/// Removes String delimiters if present (only the outer ones);
+String trimStringDelimiters(String string) => string.trimStringDelimiters();
