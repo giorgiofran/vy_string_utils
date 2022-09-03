@@ -82,7 +82,7 @@ extension StringExtension on String {
     final ret = <String>[];
     var requiredLength = lineLength - firstLineDecrease;
 
-    void _writeAndFlushBuffer({String? addString}) {
+    void writeAndFlushBuffer({String? addString}) {
       if (addString != null) {
         buffer.write(addString);
       }
@@ -94,7 +94,7 @@ extension StringExtension on String {
     }
 
     if (requiredLength < 1) {
-      _writeAndFlushBuffer(addString: ' ');
+      writeAndFlushBuffer(addString: ' ');
     }
 
     final parts = split(separator);
@@ -103,13 +103,13 @@ extension StringExtension on String {
               part.length +
               (part == parts.last ? 0 : separator.length) >
           requiredLength) {
-        _writeAndFlushBuffer();
+        writeAndFlushBuffer();
       }
 
       var idx = 0;
       if (part == parts.last) {
         for (; idx + requiredLength < part.length; idx += requiredLength) {
-          _writeAndFlushBuffer(
+          writeAndFlushBuffer(
               addString: part.substring(idx, idx + requiredLength));
         }
         if (idx < part.length) {
@@ -119,7 +119,7 @@ extension StringExtension on String {
         for (;
             idx + requiredLength < part.length + separator.length;
             idx += requiredLength) {
-          _writeAndFlushBuffer(
+          writeAndFlushBuffer(
               addString: part.substring(idx, idx + requiredLength));
         }
         if (idx < part.length) {

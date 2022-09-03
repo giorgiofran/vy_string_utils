@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.4
+
+- Moving to Lints
+
 ## 0.4.3
 
 New string methods:
