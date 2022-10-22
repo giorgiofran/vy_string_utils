@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.5
+
+- using power _extensions
+
 ## 0.4.4
 
 - Moving to Lints

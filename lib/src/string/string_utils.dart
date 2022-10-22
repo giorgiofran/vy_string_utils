@@ -1,7 +1,7 @@
 /// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
 
+import 'package:power_extensions/string_extension.dart';
 import 'package:vy_string_utils/src/reg_exp.dart';
-import 'string_extension.dart';
 
 /// Cuts the String to the required length starting from the beginning
 ///

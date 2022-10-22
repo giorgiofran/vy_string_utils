@@ -1,10 +1,13 @@
 name: vy_string_utils
 description: Collection of simple string and other types utilities.
-version: 0.4.4
+version: 0.4.5
 homepage: https://github.com/giorgiofran/vy_string_utils
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  power_extensions: ^0.2.2  
 
 dev_dependencies:
   lints: ^2.0.0

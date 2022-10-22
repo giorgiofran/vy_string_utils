@@ -1,4 +1,4 @@
-/// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
+/* /// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
 
 import 'package:vy_string_utils/src/reg_exp.dart';
 
@@ -210,3 +210,4 @@ extension StringExtension on String {
     return this;
   }
 }
+ */
