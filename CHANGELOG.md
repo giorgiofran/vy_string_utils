@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.6
+
+- Updated SDK
+
 ## 0.4.5
 
 - using power _extensions

@@ -1,4 +1,5 @@
 /// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
+library;
 
 final RegExp everythingButDigitsRegExpr = RegExp('[^0-9]*');
 
