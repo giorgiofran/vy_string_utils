@@ -2,7 +2,7 @@
 /// not compatible with the target type.
 ///
 /// List fool = ['foo', 10, null];
-/// List<String> dest = convertListToType<String>(fool);
+/// List-String- dest = convertListToType-String-(fool);
 /// ** output: dest -> ['foo']
 ///
 /// optional - if a discarded list is passed, the method will add to it
@@ -13,7 +13,7 @@
 ///
 /// List fool = ['foo', 10, null];
 /// var discarded = [];
-/// List<String> dest = convertListToType<String>(fool,
+/// List-String- dest = convertListToType-String-(fool,
 ///    discardedList: discarded);
 /// ** output: dest -> ['foo']
 /// **         discarded -> [10, null]

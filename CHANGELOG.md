@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.7
+
+- Updated Dependencies and lints
+
 ## 0.4.6
 
 - Updated SDK

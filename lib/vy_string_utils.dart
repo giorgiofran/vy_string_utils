@@ -1,5 +1,5 @@
 /// Copyright © 2020 Giorgio Franceschetti. All rights reserved.
-library vy_string_utils;
+library;
 
 export 'src/string/string_utils.dart';
 export 'package:power_extensions/string_extension.dart';
